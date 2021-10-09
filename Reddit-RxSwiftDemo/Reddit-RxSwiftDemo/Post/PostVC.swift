@@ -71,7 +71,7 @@ extension PostVC{
         let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(300), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query -> Observable<[PostDetail]> in
 
             if query.isEmpty {
-                return .just([])
+                return self.vm.loadPostListBySearch(text: "KEYWORD").catchAndReturn([])
             }
 
             return self.vm.loadPostListBySearch(text: query).catchAndReturn([])
@@ -93,6 +93,19 @@ extension PostVC{
             self?.showAlert(title: "Error！！", errMsg: err?.localizedDescription ?? "")
         })
         
+        //MARK: Download state
+        _ = self.vm.isDownloadingSuccess.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isOk in
+            print("是成功哦")
+            self?.showBanner(msg: "Image saved", type: .success)
+            
+        }, onError: { [weak self] err in
+            self?.vm.obErrMsg.accept(err)
+            
+            print("是錯誤")
+            
+        }, onCompleted: {
+            print("是下載完成")
+        }).disposed(by: dBag)
         
     }
     
@@ -106,6 +119,7 @@ extension PostVC{
     
     private func setupSearchBar(){
         searchBar.text = "TAIWAN"
+        searchBar.placeholder = "Search"
         searchBar.isTranslucent = false
         self.view.addSubview(searchBar)
         searchBar.snp.makeConstraints({
@@ -147,17 +161,9 @@ extension PostVC {
         cell.imgViewThumbnail.rx.longPressGesture(configuration: nil).when(.began).subscribe(onNext: { [weak self] gesture in
             
             self?.debugPrint("長按了")
-            self?.saveImgToLocal(img: cell.imgViewThumbnail.image)
+            self?.showDownloadAlert(url: cell.cellVM?.imgThumbnilURL)
         }).disposed(by: cell.dBag)
-//        let longPress = UILongPressGestureRecognizer()
-//        cell.imgViewThumbnail.addGestureRecognizer(longPress)
-//
-//        longPress.rx.event.when.subscribe(onNext: {[weak self] _ in
-//
-//            self?.debugPrint("長按了哦")
-//
-//        }).disposed(by: cell.dBag)
-        
+
         return cell
     }
 }
@@ -165,32 +171,26 @@ extension PostVC {
 extension PostVC{
     
     private func openWebView(url:URL?){
-//        //
-//        guard let url = url else {return}
-//        UIApplication.shared.open(url)
-//        DispatchQueue.main.async {
-            self.coordinator?.runWebViewFlow(url: url)
-//
-//        }
-        
-//        let vc = CustomWebViewVC(url: url)
 
-//        self.navigationController?.pushViewController(vc, animated: true)
-        
-//        self.navigationController?.present(vc, animated: true, completion: nil)
+            self.coordinator?.runWebViewFlow(url: url)
+
 
     }
     
-    private func saveImgToLocal(img:UIImage?){
+    private func showDownloadAlert(url:URL?){
         
         debugPrint("alert save")
-        let act = UIAlertController(title: "儲存照片", message: nil, preferredStyle: .actionSheet)
+        let act = UIAlertController(title: "Download to local?", message: nil, preferredStyle: .actionSheet)
         
-        let save = UIAlertAction(title: "Save", style: .default, handler: { [weak self] _ in
+        let save = UIAlertAction(title: "Download", style: .default, handler: { [weak self] _ in
             
-            self?.vm.saveImgToLocal(img: img)
+            self?.vm.downloadImg(url: url)
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
+            
+//            self.showBanner(msg: "Failed", type: .failed)
+            
+        })
      
         act.addAction(save)
         act.addAction(cancel)
@@ -208,3 +208,6 @@ extension PostVC :UITableViewDelegate {
     }
     
 }
+
+
+

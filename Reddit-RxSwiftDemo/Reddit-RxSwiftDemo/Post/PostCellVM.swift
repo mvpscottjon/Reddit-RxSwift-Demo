@@ -46,10 +46,19 @@ class PostCellVM: NSObject {
        var components = URLComponents()
         components.scheme = Constants.apiScheme
         components.host = Constants.apiBaseHost
-        guard let path = self._obj?.data.url else {return nil}
+        guard let path = self._obj?.data.url else {
+            
+            return URL(string: self._obj?.data.url ?? "")
+        }
         components.path = path
         
-//        print("URLLink:",components.url)
+        guard let url = components.url else {
+            
+            return URL(string: self._obj?.data.url ?? "")
+        }
+        
+        
+        print("URLLink:",components.url )
         return components.url
     }
     var urlLinkAttrString:NSAttributedString?{
@@ -61,38 +70,27 @@ class PostCellVM: NSObject {
         return attrStr
     }
     var imgThumbnilURL:URL?{
-//        return self._obj?.data.mobile_banner_image?.toURL()
-//        print("看一下thumbnail:",self._obj?.data.thumbnail?.toURL())
-        
-//        return self._obj?.data.thumbnail?.toURL()
-        return self._obj?.data.thumbnail?.toURL()
 
+        return self._obj?.data.thumbnail?.toURL()
     }
     var imgThumbnilHeight:CGFloat?{
         guard let w = self._obj?.data.thumbnail_width, let h = self._obj?.data.thumbnail_height else {return nil}
-//
-//        let  h = CGFloat(arr[1])
         let oriW = CGFloat(w)
         let oriH = CGFloat(h)
-       let ratio = Constants.getFitScreenWRatio(oriW: oriW)
-//
+        let ratio = Constants.getFitScreenWRatio(oriW: oriW)
         return  oriH *  (ratio)
         
         
     }
 
     var createTime:String?{
-        
-        
+
         guard let timeInterval = self._obj?.data.created else {return nil}
-        
         let formatter = DateFormatter()
         formatter.dateStyle = .long
+        let date = Date(timeIntervalSince1970: timeInterval )
+        let dateStr = formatter.string(from: date)
         
-       let date = Date(timeIntervalSince1970: timeInterval )
-       let dateStr = formatter.string(from: date)
-    
-        print("Date:",date,dateStr)
         return dateStr
     }
   

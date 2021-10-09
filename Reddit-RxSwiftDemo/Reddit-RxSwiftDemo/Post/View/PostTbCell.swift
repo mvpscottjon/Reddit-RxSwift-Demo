@@ -13,8 +13,10 @@ class PostTbCell: UITableViewCell {
     
     var lbTitle:UILabel = {
         let lb = UILabel()
+        lb.numberOfLines = 0
+        
         lb.font = UIFont.boldSystemFont(ofSize: 16)
-        lb.textColor = .lightGray
+        lb.textColor = .black
         return lb
     }()
     
@@ -28,7 +30,6 @@ class PostTbCell: UITableViewCell {
     var lbUserName:UILabel = {
         let lb = UILabel()
         lb.font = UIFont.systemFont(ofSize: 12)
-        lb.textColor = .lightGray
         return lb
     }()
     
@@ -54,7 +55,14 @@ class PostTbCell: UITableViewCell {
         imgView.isUserInteractionEnabled = true
         return imgView
     }()
-    var btnURL = UIButton()
+    var btnURL:UIButton = {
+        let btn = UIButton()
+        btn.setTitleColor(.blue, for: .normal)
+        btn.contentHorizontalAlignment = .leading
+        btn.titleLabel?.textAlignment = .left
+        
+        return btn
+    }()
     
     
     var cellVM:PostCellVM?{
@@ -115,7 +123,7 @@ extension PostTbCell {
         userSubView.addSubview(imgViewUserPhoto)
         imgViewUserPhoto.snp.makeConstraints({
             $0.width.height.equalTo(30)
-            $0.top.leading.equalToSuperview().inset(5)
+            $0.top.leading.equalToSuperview()
             $0.bottom.equalTo(userSubView)
         })
         //MARK:userName
@@ -136,29 +144,18 @@ extension PostTbCell {
         })
         
         
-        //MARK:msgContent
-        let msgSubView = UIView()
-        self.contentView.addSubview(msgSubView)
-        msgSubView.snp.makeConstraints({
+ 
+        //MARK:lbTitle
+        self.contentView.addSubview(lbTitle)
+        lbTitle.snp.makeConstraints({
             $0.top.equalTo(userSubView.snp.bottom).offset(cellInset)
             $0.leading.trailing.equalToSuperview().inset(cellInset)
-            $0.bottom.equalToSuperview().offset(-cellInset)
-        })
-        
-        
-        //MARK:lbTitle
-        msgSubView.addSubview(lbTitle)
-        lbTitle.snp.makeConstraints({
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(10)
         })
         
         
        //MARK:Link
-        btnURL.setTitleColor(.blue, for: .normal)
-        btnURL.contentHorizontalAlignment = .leading
-        btnURL.titleLabel?.textAlignment = .left
-        msgSubView.addSubview(btnURL)
+    
+        self.contentView.addSubview(btnURL)
         btnURL.snp.makeConstraints({
             $0.top.equalTo(lbTitle.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(lbTitle)
@@ -166,14 +163,12 @@ extension PostTbCell {
         
         
        
-        msgSubView.addSubview(imgViewThumbnail)
+        self.contentView.addSubview(imgViewThumbnail)
         imgViewThumbnail.snp.makeConstraints({
-            $0.top.equalTo(btnURL.snp.bottom).offset(10)
+            $0.top.equalTo(btnURL.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(200)
             $0.height.equalTo(0)
-//            $0.height.greaterThanOrEqualTo(0)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(cellInset)
         })
         
         
@@ -187,34 +182,37 @@ extension PostTbCell {
     private func updateCell(){
         self.lbUserName.text = self.cellVM?.userName
         self.lbDesciption.text = self.cellVM?.userDetail
-        self.lbDesciption.text = self.cellVM?.subtitle
         self.lbTitle.text = self.cellVM?.title
 //        self.btnURL.setTitle(self.cellVM?.urlLink?.absoluteString ?? "", for: .normal)
         self.btnURL.setAttributedTitle(self.cellVM?.urlLinkAttrString, for: .normal)
 
         
-        if let h = self.cellVM?.imgThumbnilHeight{
-            self.imgViewThumbnail.snp.updateConstraints({
-                $0.height.equalTo(h)
-            })
-        }
-        self.imgViewUserPhoto.kf.setImage(with: self.cellVM?.userPhotoURL)
-        self.imgViewThumbnail.kf.setImage(with: self.cellVM?.imgThumbnilURL,completionHandler: { rs in
-            
-//            print("照片讀取回來哦",self.cellVM?.imgThumbnilURL)
-            switch rs{
-            case .success(_):
-//                print("成功","先看長寬",self.cellVM?.imgThumbnilHeight)
-                break
-            case .failure(_):
-//                print("失敗")
-                self.imgViewThumbnail.snp.updateConstraints({
-                    $0.height.equalTo(0)
-                })
-            }
        
-            
-        })
+        self.imgViewUserPhoto.kf.setImage(with: self.cellVM?.userPhotoURL)
+        
+        
+//        if let h = self.cellVM?.imgThumbnilHeight{
+//            self.imgViewThumbnail.snp.updateConstraints({
+//                $0.height.equalTo(h)
+//            })
+//        }
+        
+//        self.imgViewThumbnail.kf.setImage(with: self.cellVM?.imgThumbnilURL,completionHandler: { rs in
+//
+////            print("照片讀取回來哦",self.cellVM?.imgThumbnilURL)
+//            switch rs{
+//            case .success(_):
+////                print("成功","先看長寬",self.cellVM?.imgThumbnilHeight)
+//                break
+//            case .failure(_):
+////                print("失敗")
+//                self.imgViewThumbnail.snp.updateConstraints({
+//                    $0.height.equalTo(0)
+//                })
+//            }
+//
+//
+//        })
         
     }
 

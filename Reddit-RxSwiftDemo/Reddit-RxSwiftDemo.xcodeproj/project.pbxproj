@@ -22,6 +22,10 @@
 		9A688E54270F4450000B42EB /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E53270F4450000B42EB /* PostVC.swift */; };
 		9A688E56270F46B1000B42EB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E55270F46B1000B42EB /* Coordinator.swift */; };
 		9A688E58270F4A3E000B42EB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E57270F4A3E000B42EB /* AppCoordinator.swift */; };
+		9AC727D227123FF400E4DEE4 /* BannerNotifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D127123FF400E4DEE4 /* BannerNotifyVC.swift */; };
+		9AC727D42712400300E4DEE4 /* BannerNotifyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D32712400300E4DEE4 /* BannerNotifyVM.swift */; };
+		9AC727D6271240B800E4DEE4 /* BannerNotifyProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D5271240B800E4DEE4 /* BannerNotifyProcotol.swift */; };
+		9AC727D82712412000E4DEE4 /* NotifyBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D72712412000E4DEE4 /* NotifyBannerView.swift */; };
 		9ACA9B2727118F67005E4201 /* AppMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B2627118F67005E4201 /* AppMainVC.swift */; };
 		9ACA9B2927118F7A005E4201 /* AppMainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B2827118F7A005E4201 /* AppMainVM.swift */; };
 		9ACA9B2B2711A76A005E4201 /* VCUIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B2A2711A76A005E4201 /* VCUIProtocol.swift */; };
@@ -77,6 +81,10 @@
 		9A688E53270F4450000B42EB /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		9A688E55270F46B1000B42EB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9A688E57270F4A3E000B42EB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		9AC727D127123FF400E4DEE4 /* BannerNotifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerNotifyVC.swift; sourceTree = "<group>"; };
+		9AC727D32712400300E4DEE4 /* BannerNotifyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerNotifyVM.swift; sourceTree = "<group>"; };
+		9AC727D5271240B800E4DEE4 /* BannerNotifyProcotol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerNotifyProcotol.swift; sourceTree = "<group>"; };
+		9AC727D72712412000E4DEE4 /* NotifyBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyBannerView.swift; sourceTree = "<group>"; };
 		9ACA9B2627118F67005E4201 /* AppMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainVC.swift; sourceTree = "<group>"; };
 		9ACA9B2827118F7A005E4201 /* AppMainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainVM.swift; sourceTree = "<group>"; };
 		9ACA9B2A2711A76A005E4201 /* VCUIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUIProtocol.swift; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 		9A688E1C270F41B0000B42EB /* Reddit-RxSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9AC727D027123FCD00E4DEE4 /* BannerNotify */,
 				9ACA9B3B2711E011005E4201 /* WebView */,
 				9ACA9B302711B5B1005E4201 /* Model */,
 				9ACA9B2527118F40005E4201 /* AppCoordinator */,
@@ -211,8 +220,19 @@
 				9A688E55270F46B1000B42EB /* Coordinator.swift */,
 				9ACA9B2A2711A76A005E4201 /* VCUIProtocol.swift */,
 				9ACA9B2E2711B1D2005E4201 /* ServiceProtocol.swift */,
+				9AC727D5271240B800E4DEE4 /* BannerNotifyProcotol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		9AC727D027123FCD00E4DEE4 /* BannerNotify */ = {
+			isa = PBXGroup;
+			children = (
+				9AC727D127123FF400E4DEE4 /* BannerNotifyVC.swift */,
+				9AC727D32712400300E4DEE4 /* BannerNotifyVM.swift */,
+				9AC727D72712412000E4DEE4 /* NotifyBannerView.swift */,
+			);
+			path = BannerNotify;
 			sourceTree = "<group>";
 		};
 		9ACA9B2527118F40005E4201 /* AppCoordinator */ = {
@@ -512,6 +532,7 @@
 			files = (
 				9A688E54270F4450000B42EB /* PostVC.swift in Sources */,
 				9ACA9B2927118F7A005E4201 /* AppMainVM.swift in Sources */,
+				9AC727D82712412000E4DEE4 /* NotifyBannerView.swift in Sources */,
 				9A688E22270F41B0000B42EB /* ViewController.swift in Sources */,
 				9ACA9B2727118F67005E4201 /* AppMainVC.swift in Sources */,
 				9A688E1E270F41B0000B42EB /* AppDelegate.swift in Sources */,
@@ -520,12 +541,15 @@
 				9ACA9B382711BE29005E4201 /* PostTbCell.swift in Sources */,
 				9A688E4F270F4422000B42EB /* PostCoordinator.swift in Sources */,
 				9ACA9B2F2711B1D2005E4201 /* ServiceProtocol.swift in Sources */,
+				9AC727D42712400300E4DEE4 /* BannerNotifyVM.swift in Sources */,
 				9A688E58270F4A3E000B42EB /* AppCoordinator.swift in Sources */,
 				9ACA9B2D2711B150005E4201 /* PostService.swift in Sources */,
 				9ACA9B3A2711C3F8005E4201 /* PostCellVM.swift in Sources */,
 				9ACA9B3F2711E041005E4201 /* CustomWebViewVC.swift in Sources */,
 				9A688E20270F41B0000B42EB /* SceneDelegate.swift in Sources */,
+				9AC727D227123FF400E4DEE4 /* BannerNotifyVC.swift in Sources */,
 				9ACA9B3D2711E027005E4201 /* WebViewCoordinator.swift in Sources */,
+				9AC727D6271240B800E4DEE4 /* BannerNotifyProcotol.swift in Sources */,
 				9A688E52270F4442000B42EB /* PostVM.swift in Sources */,
 				9ACA9B2B2711A76A005E4201 /* VCUIProtocol.swift in Sources */,
 				9A688E56270F46B1000B42EB /* Coordinator.swift in Sources */,

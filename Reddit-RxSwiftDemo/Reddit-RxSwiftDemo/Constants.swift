@@ -38,6 +38,7 @@ struct Constants {
         #endif
     }
     
+    static let bannerViewTag = 1204980299998
     
 }
 
@@ -83,6 +84,10 @@ extension UIViewController{
     func showAlert(title:String?, errMsg:String , alertStyle:UIAlertController.Style = .alert){
         
         let act = UIAlertController(title: title, message: errMsg, preferredStyle: alertStyle)
+        
+        let action = UIAlertAction(title: "Ok", style: .default)
+        
+        act.addAction(action)
         
         self.present(act, animated: true, completion: nil)
         

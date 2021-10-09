@@ -6,14 +6,21 @@
 //
 
 import UIKit
+import SwiftUI
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var window: UIWindow?
 
+    var appCoordinator:AppCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+
+//        self.configAppCoordinator()
+        self.configNavBar()
         return true
     }
 
@@ -34,3 +41,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension AppDelegate{
+    
+    private func configAppCoordinator(){
+        
+        print("config appCoordinator")
+        
+        let navVC = UINavigationController(rootViewController: UIViewController())
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = navVC
+        self.window?.backgroundColor = .white
+        
+        appCoordinator = AppCoordinator(navigation: navVC)
+        appCoordinator?.start()
+        self.window?.makeKeyAndVisible()
+        
+    }
+    
+    private func configNavBar(){
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor.init(redPercent: 30, greedPercent: 37, bluePercent: 52, alphaPercent: 100)
+        
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+        if #available(iOS 15.0, *) {
+            UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+        }
+        
+    }
+}

@@ -46,23 +46,24 @@ extension PostVM{
 //
 //    }
     
+//    func loadPostListBySearchText(text:String?)  {
+//        self._service.loadPostListBySearchText(text: text, completion: {arr, err in
+//
+//            print("搜尋字\(text)回來：",arr.count,err)
+//
+//            guard err == nil else {
+//                self.obPostDeatilArr.accept([])
+//                return}
+//
+//            self.obPostDeatilArr.accept(arr)
+//
+//
+//        })
+//
+//    }
     
     func loadPostListBySearch(text:String?) -> Observable<[PostDetail]>{
-//        guard let text = text else {return .just([])}
-//        var component = URLComponents()
-//        component.scheme = Constants.apiScheme
-//        component.host = Constants.apiBaseHost
-//        component.path = "/\(text)/top.json"
-//        
-//        guard let url = component.url else {return .just([])}
-//        
-//        let req = URLRequest(url: url)
-//        let sesson = URLSession.shared
-//        
-//        return sesson.rx.data(request: req).map({
-//            
-//        })
-        
+
         
        return self._service.loadTopPostListBySearchText(text: text)
     }

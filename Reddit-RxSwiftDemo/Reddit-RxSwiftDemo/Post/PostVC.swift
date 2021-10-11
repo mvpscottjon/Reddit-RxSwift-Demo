@@ -59,96 +59,100 @@ extension PostVC{
     }
     
     func bindUI() {
-        //MARK: bind tbView
-//      _ =  self.vm.obPostDeatilArr.bind(to: self.tbView.rx.items){ tb, row, post in
-//
-//            self.configCell(tablieView: tb, row: row, post: post)
-//      }.disposed(by: dBag)
-        
+
         //MARK: tbView delegate
         _ = self.tbView.rx.setDelegate(self).disposed(by: dBag)
+  
+        
+//        //MARK:bind searchBar
+
+//        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(150), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ [unowned self] query -> Observable<[PostDetail]> in
+//
+//            if query.isEmpty {
+////                return self.vm.loadPostListBySearch(text: "KEYWORD").catchAndReturn([])
+//                return .just([])
+//            }
+//
+//            return self.vm.loadPostListBySearch(text: query).catch({ err in
+//
+//                print("search錯誤哦:",err)
+//
+//
+//                return .just([])
+//            })
+//
+//        }).observe(on: MainScheduler.instance)
+//
+//        //MARK: searchRs bind to tbView
+//       _ = searchRS.bind(to: self.tbView.rx.items){ tb, row, post in
+//
+//            self.configCell(tablieView: tb, row: row, post: post)
+//       }.disposed(by: dBag)
+        
+        
+        self.vm.obPostDeatilArr.bind(to: self.tbView.rx.items){ tb, row, post in
+
+            self.configCell(tablieView: tb, row: row, post: post)
+        }.disposed(by: dBag)
+
+        //MARK: Bind search
+        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(500), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query in
+            
+            return self.vm.loadPostListBySearch(text: query).catchAndReturn([])
+            
+        }).observe(on: MainScheduler.instance)
+
+        searchRS.subscribe(onNext: {[weak self] arr in
+
+
+            self?.vm.obPostDeatilArr.accept(arr)
+
+             }, onError: nil, onCompleted: nil).disposed(by: dBag)
+
+       
+        
+        
+        
+
         //MARK: tbView refresh
-        
-        
-        
-        
+
         self.tbView.refreshControl = refreshControl
 //
         let fresh = refreshControl.rx.controlEvent(.valueChanged)
             .flatMapLatest({ _ in
-//            return Observable.just([])
-                
-            
-                
+                //            return Observable.just([])
+
                 return self.vm.loadPostListBySearch(text: self.searchBar.text).catch({ _ in .just([])})
-        })
+            })
             .observe(on: MainScheduler.instance)
 
-//        fresh.bind(to: self.tbView.rx.items){ tb, row, post in
-//
-//            self.configCell(tablieView: tb, row: row, post: post)
-//        }.disposed(by: dBag)
-//
-        
-        
+
+
         fresh.subscribe(onNext: { arr in
-            
+
             print("刷新了",arr.count)
-            
+
             self.vm.obPostDeatilArr.accept(arr)
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.tbView.refreshControl?.endRefreshing()
             })
-            
+
+
+
         }, onError: { arr in
             print("fresch是 err")
-            
+
         }
         ,onCompleted: {
             print("fresch是 completed")
-        
+
         }).disposed(by: dBag)
-            
-            
+
         
         
        
         
-        
-        //MARK:bind searchBar
-        
-        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(150), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ [unowned self] query -> Observable<[PostDetail]> in
-
-            if query.isEmpty {
-//                return self.vm.loadPostListBySearch(text: "KEYWORD").catchAndReturn([])
-                return .just([])
-            }
-
-            return self.vm.loadPostListBySearch(text: query).catch({ err in
-                
-                print("search錯誤哦:",err)
-//                if let nsErr = err as? NSError {
-//                    print(nsErr.code)
-//
-//                    if  nsErr.code != 404{
-//
-//                        print("是404哦")
-//                        self.vm.obErrMsg.accept(err)
-//
-//                    }
-//
-//            }
-                
-                return .just([])
-            })
-
-        }).observe(on: MainScheduler.instance)
-
-       _ = searchRS.bind(to: self.tbView.rx.items){ tb, row, post in
-            
-            self.configCell(tablieView: tb, row: row, post: post)
-       }.disposed(by: dBag)
         
         
         //MARK: errMsg

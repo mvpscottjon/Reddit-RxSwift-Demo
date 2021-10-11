@@ -39,6 +39,8 @@ struct Constants {
     }
     
     static let bannerViewTag = 1204980299998
+    static let viewTagForLoadingView = 1204980299998
+
     
 }
 

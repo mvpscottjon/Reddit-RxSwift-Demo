@@ -41,6 +41,7 @@
 		9AD54CF227142B2F00B7C1CF /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF127142B2F00B7C1CF /* RealmManager.swift */; };
 		9AD54CF42714309E00B7C1CF /* RMLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */; };
 		9AD54CF62714524800B7C1CF /* PostWithThumbnailTbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF52714524800B7C1CF /* PostWithThumbnailTbCell.swift */; };
+		9AD54CF82714789400B7C1CF /* VCLoadingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF72714789400B7C1CF /* VCLoadingProtocol.swift */; };
 		9DE2B06A6A86CF4C2A54EB17 /* Pods_Reddit_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D28EB92C6C7E51617E8E098 /* Pods_Reddit_RxSwiftDemo.framework */; };
 		B247F02A51116908B05353E3 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54B32C3970AF4F6AE8558C6 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		9AD54CF127142B2F00B7C1CF /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocalImage.swift; sourceTree = "<group>"; };
 		9AD54CF52714524800B7C1CF /* PostWithThumbnailTbCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithThumbnailTbCell.swift; sourceTree = "<group>"; };
+		9AD54CF72714789400B7C1CF /* VCLoadingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLoadingProtocol.swift; sourceTree = "<group>"; };
 		A05BC9486A5EF25F6E71BBC2 /* Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests/Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B54B32C3970AF4F6AE8558C6 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE01433D8D6F9D92C4B4470 /* Pods_Reddit_RxSwiftDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reddit_RxSwiftDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +232,7 @@
 				9ACA9B2A2711A76A005E4201 /* VCUIProtocol.swift */,
 				9ACA9B2E2711B1D2005E4201 /* ServiceProtocol.swift */,
 				9AC727D5271240B800E4DEE4 /* BannerNotifyProcotol.swift */,
+				9AD54CF72714789400B7C1CF /* VCLoadingProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				9ACA9B382711BE29005E4201 /* PostTbCell.swift in Sources */,
 				9A688E4F270F4422000B42EB /* PostCoordinator.swift in Sources */,
 				9ACA9B2F2711B1D2005E4201 /* ServiceProtocol.swift in Sources */,
+				9AD54CF82714789400B7C1CF /* VCLoadingProtocol.swift in Sources */,
 				9A688E58270F4A3E000B42EB /* AppCoordinator.swift in Sources */,
 				9ACA9B2D2711B150005E4201 /* PostService.swift in Sources */,
 				9ACA9B3A2711C3F8005E4201 /* PostCellVM.swift in Sources */,

@@ -52,40 +52,23 @@ extension LocalStorageService{
 
         
         switch storageType {
-//        case .fileSystem:
-//            return nil
+
         case .userDefaults:
-            
-            
+    
             guard let value =  UserDefaults.standard.value(forKey: key) as? Data else {return nil}
-            
             let data = try! PropertyListDecoder().decode(Data.self, from: value)
-            
-    //        print("先看v:",value,UIImage(data: data))
-            
             return UIImage(data: data)
+            
         case .realmSystem:
             
             let obj = RealmManager.shared.getObjectByPrimaryKey(type: RMLocalImage.self, key: key)
             
-            
-
-            guard let fileURL = obj?.fileURL?.toURL(), let data = obj?.imgData else {
-                print("fileURL nil")
+            guard  let data = obj?.imgData else {
                 return nil}
             
-            
-            
-          
-            
-            
             let img = UIImage(data: data)
-            
-//            print("先看realm get v:",fileURL,data,img)
-
             return img
-         
-            
+
         }
         
         
@@ -126,7 +109,7 @@ extension LocalStorageService{
             
             
             
-            completion(targetFileURL,nil)
+         
             
         } catch{
             debugPrint("錯誤:",error)
@@ -144,15 +127,23 @@ extension LocalStorageService{
             let img = UIImage(contentsOfFile: targetFileURL.path)
             guard let data = try? PropertyListEncoder().encode(img?.pngData()) else {return}
             UserDefaults.standard.set(data, forKey: key)
-            
+            completion(targetFileURL,nil)
             
         case .realmSystem:
             //save to realm
-            let manager = RealmManager.shared
-            let data = try? Data(contentsOf: targetFileURL)
-            let obj = RMLocalImage(id: key, fileURL: targetFileURL.absoluteString, serverURL: key ,  imgData: data)
-            
-            manager.saveObject(obj: obj)
+            DispatchQueue.global().async {
+                
+                let data = try? Data(contentsOf: targetFileURL)
+                let obj = RMLocalImage(id: key, fileURL: targetFileURL.absoluteString, serverURL: key ,  imgData: data)
+                
+                DispatchQueue.main.async {
+                
+                    RealmManager.shared.saveObject(obj: obj)
+                    completion(targetFileURL,nil)
+                }
+               
+            }
+          
             
     
             

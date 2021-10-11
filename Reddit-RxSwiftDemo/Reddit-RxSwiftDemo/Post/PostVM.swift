@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxRelay
+import RxCocoa
 class PostVM: NSObject {
 
     let _service:PostServiceProtocol
@@ -15,10 +16,11 @@ class PostVM: NSObject {
     let obPostDeatilArr = BehaviorRelay<[PostDetail]>(value: [])
     
     let isDownloadingSuccess = PublishRelay<Bool>()
+    let isLoading = BehaviorRelay<Bool>(value: false)
     let obErrMsg = BehaviorRelay<Error?>(value: nil)
     
-    init(service:PostServiceProtocol = PostService()) {
-        self._service = service
+    init(apiService:PostServiceProtocol = PostService(), localService:LocalStorageServiceProtocol = LocalStorageService()) {
+        self._service = apiService
         super.init()
         
 //        self.loadTopList()
@@ -61,6 +63,7 @@ extension PostVM{
 //            
 //        })
         
+        
        return self._service.loadTopPostListBySearchText(text: text)
     }
     
@@ -68,37 +71,26 @@ extension PostVM{
 
 extension PostVM{
     
-//    func saveImgToLocal(img:UIImage?){
-//
-//        guard let img = img else {return}
-//
-//        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
-//
-//
-//    }
-//
+
     func downloadImg(url:URL?){
-        
+//        self.isLoading.accept(true)
         self._service.downloadImg(serverURL: url, completion: { fileURL,err in
             
             guard err == nil else {
                 self.obErrMsg.accept(err)
                 self.isDownloadingSuccess.accept(false)
                 return}
-            
-            
-//            print( "看一下ud:",url?.absoluteString,LocalStorageService.shared.retrieveImg(key: url?.absoluteString))
+     
+            //save to local
             self._localService.saveImg(key: url?.absoluteString, tmpFileURL: fileURL, storageType: .realmSystem, completion: {targetFileURL, localErr in
                 
                 guard localErr == nil else {
                     self.obErrMsg.accept(localErr)
                     self.isDownloadingSuccess.accept(false)
                     return}
-                
-
-                
+  
                 self.isDownloadingSuccess.accept(true)
-
+//                self.isLoading.accept(false)
             })
            
             

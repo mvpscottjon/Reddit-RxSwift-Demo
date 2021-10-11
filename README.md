@@ -26,7 +26,14 @@
 
 2.若貼文有縮圖，可長按圖片或按下載圖示進行背景下載，下載成功後會顯示儲存成功
 
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/download.png" width="414" height="665">
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/success.png" width="414" height="665">
+
 3.若貼文有link，則顯示link按鈕，點擊用webView開啟
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/webView.png" width="414" height="665">
+
 
 
 # Memo
@@ -40,5 +47,29 @@
 
 5. 原本參考reddit貼文cell，想拿thumbnail當作貼文圖片來做auto size cell，但縮圖畫質太差，故後來改為reddit上另一種搜尋的cell
 
-reddit 貼文示意
-<img src="https://github.com/mvpscottjon/user_code_base_ui/blob/master/source/Simulator%20Screen%20Shot%20-%20iPhone%2013%20-%202021-10-11%20at%2020.29.54.png" width="414" height="665">
+reddit autosize cell 貼文示意
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/IMG_1424.png" width="414" height="665">
+
+
+
+實際情形
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/autosize.png" width="414" height="665">
+
+
+reddit thumbnail cell 貼文示意
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/IMG_1425.png" width="414" height="665">
+
+
+
+實際情形
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/home.png" width="414" height="665">
+
+
+
+
+
+

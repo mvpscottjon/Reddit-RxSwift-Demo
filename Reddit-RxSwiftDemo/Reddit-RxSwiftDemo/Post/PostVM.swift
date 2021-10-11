@@ -11,6 +11,7 @@ import RxRelay
 class PostVM: NSObject {
 
     let _service:PostServiceProtocol
+    let _localService:LocalStorageServiceProtocol = LocalStorageService()
     let obPostDeatilArr = BehaviorRelay<[PostDetail]>(value: [])
     
     let isDownloadingSuccess = PublishRelay<Bool>()
@@ -78,13 +79,30 @@ extension PostVM{
 //
     func downloadImg(url:URL?){
         
-        self._service.downloadImg(url: url, completion: { fileURL,err in
+        self._service.downloadImg(serverURL: url, completion: { fileURL,err in
             
             guard err == nil else {
+                self.obErrMsg.accept(err)
                 self.isDownloadingSuccess.accept(false)
                 return}
             
-            self.isDownloadingSuccess.accept(true)
+            
+//            print( "看一下ud:",url?.absoluteString,LocalStorageService.shared.retrieveImg(key: url?.absoluteString))
+            self._localService.saveImg(key: url?.absoluteString, tmpFileURL: fileURL, storageType: .realmSystem, completion: {targetFileURL, localErr in
+                
+                guard localErr == nil else {
+                    self.obErrMsg.accept(localErr)
+                    self.isDownloadingSuccess.accept(false)
+                    return}
+                
+
+                
+                self.isDownloadingSuccess.accept(true)
+
+            })
+           
+            
+            
         })
         
         

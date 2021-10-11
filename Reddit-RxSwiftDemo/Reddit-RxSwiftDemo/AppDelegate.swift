@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import SwiftUI
-
+//import SwiftUI
+import RealmSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //        self.configAppCoordinator()
         self.configNavBar()
+        self.congifRealm()
         return true
     }
 
@@ -73,5 +74,31 @@ extension AppDelegate{
             UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
         }
         
+    }
+    
+    private func congifRealm(){
+        
+        var config = Realm.Configuration(
+      
+            schemaVersion: 1,
+
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {
+                
+                }
+            })
+
+        config.deleteRealmIfMigrationNeeded = true
+        // Tell Realm to use this new configuration bject for the default Realm
+        Realm.Configuration.defaultConfiguration = config
+
+        let realm = try! Realm()
+        
+        
+//        try!  realm.write {
+//
+//            realm.deleteAll()
+//
+//        }
     }
 }

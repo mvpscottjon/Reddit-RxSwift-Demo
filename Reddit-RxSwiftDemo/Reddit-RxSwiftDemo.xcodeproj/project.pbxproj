@@ -22,10 +22,10 @@
 		9A688E54270F4450000B42EB /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E53270F4450000B42EB /* PostVC.swift */; };
 		9A688E56270F46B1000B42EB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E55270F46B1000B42EB /* Coordinator.swift */; };
 		9A688E58270F4A3E000B42EB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A688E57270F4A3E000B42EB /* AppCoordinator.swift */; };
-		9AC727D227123FF400E4DEE4 /* BannerNotifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D127123FF400E4DEE4 /* BannerNotifyVC.swift */; };
-		9AC727D42712400300E4DEE4 /* BannerNotifyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D32712400300E4DEE4 /* BannerNotifyVM.swift */; };
 		9AC727D6271240B800E4DEE4 /* BannerNotifyProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D5271240B800E4DEE4 /* BannerNotifyProcotol.swift */; };
 		9AC727D82712412000E4DEE4 /* NotifyBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727D72712412000E4DEE4 /* NotifyBannerView.swift */; };
+		9AC727DC27125BD200E4DEE4 /* ResizableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727DB27125BD200E4DEE4 /* ResizableButton.swift */; };
+		9AC727E02712628B00E4DEE4 /* TimeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC727DF2712628B00E4DEE4 /* TimeHandler.swift */; };
 		9ACA9B2727118F67005E4201 /* AppMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B2627118F67005E4201 /* AppMainVC.swift */; };
 		9ACA9B2927118F7A005E4201 /* AppMainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B2827118F7A005E4201 /* AppMainVM.swift */; };
 		9ACA9B2B2711A76A005E4201 /* VCUIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B2A2711A76A005E4201 /* VCUIProtocol.swift */; };
@@ -37,6 +37,9 @@
 		9ACA9B3A2711C3F8005E4201 /* PostCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B392711C3F8005E4201 /* PostCellVM.swift */; };
 		9ACA9B3D2711E027005E4201 /* WebViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B3C2711E027005E4201 /* WebViewCoordinator.swift */; };
 		9ACA9B3F2711E041005E4201 /* CustomWebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ACA9B3E2711E041005E4201 /* CustomWebViewVC.swift */; };
+		9AD54CEE271376BE00B7C1CF /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CED271376BE00B7C1CF /* LocalStorageService.swift */; };
+		9AD54CF227142B2F00B7C1CF /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF127142B2F00B7C1CF /* RealmManager.swift */; };
+		9AD54CF42714309E00B7C1CF /* RMLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */; };
 		9DE2B06A6A86CF4C2A54EB17 /* Pods_Reddit_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D28EB92C6C7E51617E8E098 /* Pods_Reddit_RxSwiftDemo.framework */; };
 		B247F02A51116908B05353E3 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54B32C3970AF4F6AE8558C6 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -81,10 +84,10 @@
 		9A688E53270F4450000B42EB /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		9A688E55270F46B1000B42EB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		9A688E57270F4A3E000B42EB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		9AC727D127123FF400E4DEE4 /* BannerNotifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerNotifyVC.swift; sourceTree = "<group>"; };
-		9AC727D32712400300E4DEE4 /* BannerNotifyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerNotifyVM.swift; sourceTree = "<group>"; };
 		9AC727D5271240B800E4DEE4 /* BannerNotifyProcotol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerNotifyProcotol.swift; sourceTree = "<group>"; };
 		9AC727D72712412000E4DEE4 /* NotifyBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyBannerView.swift; sourceTree = "<group>"; };
+		9AC727DB27125BD200E4DEE4 /* ResizableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableButton.swift; sourceTree = "<group>"; };
+		9AC727DF2712628B00E4DEE4 /* TimeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHandler.swift; sourceTree = "<group>"; };
 		9ACA9B2627118F67005E4201 /* AppMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainVC.swift; sourceTree = "<group>"; };
 		9ACA9B2827118F7A005E4201 /* AppMainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainVM.swift; sourceTree = "<group>"; };
 		9ACA9B2A2711A76A005E4201 /* VCUIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUIProtocol.swift; sourceTree = "<group>"; };
@@ -96,6 +99,9 @@
 		9ACA9B392711C3F8005E4201 /* PostCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellVM.swift; sourceTree = "<group>"; };
 		9ACA9B3C2711E027005E4201 /* WebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCoordinator.swift; sourceTree = "<group>"; };
 		9ACA9B3E2711E041005E4201 /* CustomWebViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebViewVC.swift; sourceTree = "<group>"; };
+		9AD54CED271376BE00B7C1CF /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		9AD54CF127142B2F00B7C1CF /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocalImage.swift; sourceTree = "<group>"; };
 		A05BC9486A5EF25F6E71BBC2 /* Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests/Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B54B32C3970AF4F6AE8558C6 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE01433D8D6F9D92C4B4470 /* Pods_Reddit_RxSwiftDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reddit_RxSwiftDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,7 +172,8 @@
 		9A688E1C270F41B0000B42EB /* Reddit-RxSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9AC727D027123FCD00E4DEE4 /* BannerNotify */,
+				9AD54CEF271376D000B7C1CF /* Manager */,
+				9AC727D927125BB300E4DEE4 /* CustomView */,
 				9ACA9B3B2711E011005E4201 /* WebView */,
 				9ACA9B302711B5B1005E4201 /* Model */,
 				9ACA9B2527118F40005E4201 /* AppCoordinator */,
@@ -228,11 +235,34 @@
 		9AC727D027123FCD00E4DEE4 /* BannerNotify */ = {
 			isa = PBXGroup;
 			children = (
-				9AC727D127123FF400E4DEE4 /* BannerNotifyVC.swift */,
-				9AC727D32712400300E4DEE4 /* BannerNotifyVM.swift */,
 				9AC727D72712412000E4DEE4 /* NotifyBannerView.swift */,
 			);
 			path = BannerNotify;
+			sourceTree = "<group>";
+		};
+		9AC727D927125BB300E4DEE4 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				9AC727D027123FCD00E4DEE4 /* BannerNotify */,
+				9AC727DA27125BB900E4DEE4 /* Btn */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		9AC727DA27125BB900E4DEE4 /* Btn */ = {
+			isa = PBXGroup;
+			children = (
+				9AC727DB27125BD200E4DEE4 /* ResizableButton.swift */,
+			);
+			path = Btn;
+			sourceTree = "<group>";
+		};
+		9AC727DE2712627000E4DEE4 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				9AC727DF2712628B00E4DEE4 /* TimeHandler.swift */,
+			);
+			path = Handler;
 			sourceTree = "<group>";
 		};
 		9ACA9B2527118F40005E4201 /* AppCoordinator */ = {
@@ -257,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				9ACA9B322711B5D1005E4201 /* Post.swift */,
+				9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -276,6 +307,24 @@
 				9ACA9B3E2711E041005E4201 /* CustomWebViewVC.swift */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		9AD54CEF271376D000B7C1CF /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9AD54CF0271376E700B7C1CF /* Service */,
+				9AC727DE2712627000E4DEE4 /* Handler */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9AD54CF0271376E700B7C1CF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9AD54CED271376BE00B7C1CF /* LocalStorageService.swift */,
+				9AD54CF127142B2F00B7C1CF /* RealmManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		B8EB55373D45BE0F09767431 /* Pods */ = {
@@ -535,19 +584,22 @@
 				9AC727D82712412000E4DEE4 /* NotifyBannerView.swift in Sources */,
 				9A688E22270F41B0000B42EB /* ViewController.swift in Sources */,
 				9ACA9B2727118F67005E4201 /* AppMainVC.swift in Sources */,
+				9AC727DC27125BD200E4DEE4 /* ResizableButton.swift in Sources */,
 				9A688E1E270F41B0000B42EB /* AppDelegate.swift in Sources */,
+				9AC727E02712628B00E4DEE4 /* TimeHandler.swift in Sources */,
+				9AD54CF227142B2F00B7C1CF /* RealmManager.swift in Sources */,
 				9ACA9B352711BBA2005E4201 /* Constants.swift in Sources */,
 				9ACA9B332711B5D1005E4201 /* Post.swift in Sources */,
 				9ACA9B382711BE29005E4201 /* PostTbCell.swift in Sources */,
 				9A688E4F270F4422000B42EB /* PostCoordinator.swift in Sources */,
 				9ACA9B2F2711B1D2005E4201 /* ServiceProtocol.swift in Sources */,
-				9AC727D42712400300E4DEE4 /* BannerNotifyVM.swift in Sources */,
 				9A688E58270F4A3E000B42EB /* AppCoordinator.swift in Sources */,
 				9ACA9B2D2711B150005E4201 /* PostService.swift in Sources */,
 				9ACA9B3A2711C3F8005E4201 /* PostCellVM.swift in Sources */,
 				9ACA9B3F2711E041005E4201 /* CustomWebViewVC.swift in Sources */,
+				9AD54CEE271376BE00B7C1CF /* LocalStorageService.swift in Sources */,
 				9A688E20270F41B0000B42EB /* SceneDelegate.swift in Sources */,
-				9AC727D227123FF400E4DEE4 /* BannerNotifyVC.swift in Sources */,
+				9AD54CF42714309E00B7C1CF /* RMLocalImage.swift in Sources */,
 				9ACA9B3D2711E027005E4201 /* WebViewCoordinator.swift in Sources */,
 				9AC727D6271240B800E4DEE4 /* BannerNotifyProcotol.swift in Sources */,
 				9A688E52270F4442000B42EB /* PostVM.swift in Sources */,
@@ -740,6 +792,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -769,6 +822,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

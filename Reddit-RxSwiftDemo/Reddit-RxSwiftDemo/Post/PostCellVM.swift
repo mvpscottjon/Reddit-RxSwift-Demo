@@ -58,8 +58,8 @@ class PostCellVM: NSObject {
         }
         
         
-        print("URLLink:",components.url )
-        return components.url
+//        print("URLLink:",components.url )
+        return url
     }
     var urlLinkAttrString:NSAttributedString?{
         let attr : [NSAttributedString.Key:Any] = [NSAttributedString.Key.foregroundColor: UIColor.blue,
@@ -70,8 +70,16 @@ class PostCellVM: NSObject {
         return attrStr
     }
     var imgThumbnilURL:URL?{
-
+//        print("看thumbnailURL:",self._obj?.data.thumbnail)
         return self._obj?.data.thumbnail?.toURL()
+    }
+    var imgThumbnail:UIImage?{
+        
+       let img = LocalStorageService.shared.retrieveImg(key: self.imgThumbnilURL?.absoluteString)
+        
+//        print("看img local file:",img)
+        
+        return img
     }
     var imgThumbnilHeight:CGFloat?{
         guard let w = self._obj?.data.thumbnail_width, let h = self._obj?.data.thumbnail_height else {return nil}

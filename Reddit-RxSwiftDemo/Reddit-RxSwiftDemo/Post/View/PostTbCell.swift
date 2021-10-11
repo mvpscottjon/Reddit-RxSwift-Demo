@@ -57,10 +57,13 @@ class PostTbCell: UITableViewCell {
     }()
     var btnURL:UIButton = {
         let btn = UIButton()
+        
         btn.setTitleColor(.blue, for: .normal)
         btn.contentHorizontalAlignment = .leading
         btn.titleLabel?.textAlignment = .left
-        
+//        btn.titleLabel?.numberOfLines = 0
+//        btn.backgroundColor = .yellow
+//        btn.titleLabel?.lineBreakMode = .byWordWrapping
         return btn
     }()
     
@@ -95,20 +98,29 @@ class PostTbCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.imgViewUserPhoto.layer.cornerRadius = self.imgViewUserPhoto.frame.width / 2
+        DispatchQueue.main.async {
+            self.imgViewUserPhoto.layer.cornerRadius = self.imgViewUserPhoto.frame.width / 2
+
+        }
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         
         dBag = DisposeBag()
+        self.imgViewThumbnail.image  = nil
+        self.imgViewUserPhoto.image = nil
+        self.lbTitle.text = nil
+        self.lbDesciption.text = nil
+        self.lbUserName.text = nil
     }
 }
 
 extension PostTbCell {
     
     private func setupCell(){
+        
+        self.selectionStyle = .none
         
         let cellInset : CGFloat = 20
         
@@ -159,6 +171,7 @@ extension PostTbCell {
         btnURL.snp.makeConstraints({
             $0.top.equalTo(lbTitle.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(lbTitle)
+//            $0.bottom.equalToSuperview()
         })
         
         
@@ -185,35 +198,47 @@ extension PostTbCell {
         self.lbTitle.text = self.cellVM?.title
 //        self.btnURL.setTitle(self.cellVM?.urlLink?.absoluteString ?? "", for: .normal)
         self.btnURL.setAttributedTitle(self.cellVM?.urlLinkAttrString, for: .normal)
-
+        
         
        
         self.imgViewUserPhoto.kf.setImage(with: self.cellVM?.userPhotoURL)
         
         
-//        if let h = self.cellVM?.imgThumbnilHeight{
-//            self.imgViewThumbnail.snp.updateConstraints({
-//                $0.height.equalTo(h)
-//            })
-//        }
+        if let h = self.cellVM?.imgThumbnilHeight{
+            self.imgViewThumbnail.snp.updateConstraints({
+                $0.height.equalTo(h)
+            })
+        }
         
-//        self.imgViewThumbnail.kf.setImage(with: self.cellVM?.imgThumbnilURL,completionHandler: { rs in
-//
-////            print("照片讀取回來哦",self.cellVM?.imgThumbnilURL)
-//            switch rs{
-//            case .success(_):
-////                print("成功","先看長寬",self.cellVM?.imgThumbnilHeight)
-//                break
-//            case .failure(_):
-////                print("失敗")
-//                self.imgViewThumbnail.snp.updateConstraints({
-//                    $0.height.equalTo(0)
-//                })
-//            }
-//
-//
-//        })
-        
+        if self.cellVM?.imgThumbnail != nil {
+            
+            print("是local img")
+        DispatchQueue.main.async {
+            self.imgViewThumbnail.image = self.cellVM?.imgThumbnail
+
+        }
+        }else{
+            print("是server img")
+            self.imgViewThumbnail.kf.setImage(with: self.cellVM?.imgThumbnilURL,completionHandler: { rs in
+
+                //            print("照片讀取回來哦",self.cellVM?.imgThumbnilURL)
+                switch rs{
+                case .success(_):
+                    //                print("成功","先看長寬",self.cellVM?.imgThumbnilHeight)
+                    break
+                case .failure(_):
+                    //                print("失敗")
+                    self.imgViewThumbnail.snp.updateConstraints({
+                        $0.height.equalTo(0)
+                    })
+                }
+
+
+            })
+            
+            
+        }
+  
     }
 
 }

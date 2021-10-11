@@ -17,7 +17,9 @@ class PostVC: UIViewController {
     var vm = PostVM()
     var tbView:UITableView  = UITableView(frame: .zero, style: .plain)
     var searchBar = UISearchBar(frame: .zero)
-    
+    private let refreshControl: UIRefreshControl = {
+        return UIRefreshControl()
+    }()
     let dBag = DisposeBag()
     
     weak var coordinator:PostCoordinator?
@@ -65,13 +67,46 @@ extension PostVC{
         
         //MARK: tbView delegate
         _ = self.tbView.rx.setDelegate(self).disposed(by: dBag)
+        //MARK: tbView refresh
+//        self.tbView.refreshControl = refreshControl
+//
+//        let fresh = refreshControl.rx.controlEvent(.valueChanged).flatMapFirst({ _ in
+//
+//            return self.vm.loadPostListBySearch(text: self.searchBar.text)
+//
+//        }).observe(on: MainScheduler.instance)
+//
+//        fresh.bind(to: self.tbView.rx.items){ tb, row, post in
+//
+//            self.configCell(tablieView: tb, row: row, post: post)
+//        }.disposed(by: dBag)
+//
+        
+        
+//        fresh.subscribe(onNext: { arr in
+//
+//            print("刷新了")
+//
+//            self.vm.obPostDeatilArr.accept(arr)
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                self.tbView.refreshControl?.endRefreshing()
+//            })
+//
+//        }).disposed(by: dBag)
+        
+        
+        
+       
+        
         
         //MARK:bind searchBar
         
-        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(300), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query -> Observable<[PostDetail]> in
+        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(150), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query -> Observable<[PostDetail]> in
 
             if query.isEmpty {
-                return self.vm.loadPostListBySearch(text: "KEYWORD").catchAndReturn([])
+//                return self.vm.loadPostListBySearch(text: "KEYWORD").catchAndReturn([])
+                return .just([])
             }
 
             return self.vm.loadPostListBySearch(text: query).catchAndReturn([])
@@ -95,16 +130,16 @@ extension PostVC{
         
         //MARK: Download state
         _ = self.vm.isDownloadingSuccess.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isOk in
-            print("是成功哦")
-            self?.showBanner(msg: "Image saved", type: .success)
             
+            if isOk{
+            self?.showBanner(msg: "Image saved", type: .success)
+            }else {
+                self?.showBanner(msg: "Save failed", type: .failed)
+            }
         }, onError: { [weak self] err in
             self?.vm.obErrMsg.accept(err)
+
             
-            print("是錯誤")
-            
-        }, onCompleted: {
-            print("是下載完成")
         }).disposed(by: dBag)
         
     }

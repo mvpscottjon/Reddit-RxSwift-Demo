@@ -14,6 +14,9 @@ target 'Reddit-RxSwiftDemo' do
 	pod 'SnapKit'
 	pod 'Kingfisher'
 	pod 'Alamofire'
+	pod 'Realm'
+	pod 'RealmSwift', '~>10'
+
 
 
   target 'Reddit-RxSwiftDemoTests' do

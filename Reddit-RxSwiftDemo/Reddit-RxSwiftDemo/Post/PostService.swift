@@ -12,7 +12,7 @@ protocol PostServiceProtocol{
     
 //    func  loadTopPostList(completion: @escaping(PostListModel?,Error?) -> Void)
     func  loadTopPostListBySearchText(text:String?) -> Observable<[PostDetail]>
-   func downloadImg(url:URL?, completion:@escaping(URL?,Error?) -> Void)
+   func downloadImg(serverURL:URL?, completion:@escaping(URL?,Error?) -> Void)
 }
 
 class PostService: NSObject , PostServiceProtocol{
@@ -85,7 +85,7 @@ extension PostService {
         
     }
     
-    func decodeJson(data: Data) -> [PostDetail] {
+   private func decodeJson(data: Data) -> [PostDetail] {
         
         guard let obj = try? JSONDecoder().decode(PostListModel.self, from:  data) else {return []}
                 
@@ -99,23 +99,24 @@ extension PostService {
 
 extension PostService {
     
-    func downloadImg(url:URL?, completion:@escaping(URL?,Error?) -> Void){
+    func downloadImg(serverURL:URL?, completion:@escaping(URL?,Error?) -> Void){
         
-        guard let url = url else {
+        guard let serverURL = serverURL else {
             completion(nil,ServiceError.urlNil)
             return}
+
         
-        let task = URLSession.shared.downloadTask(with: url) { tmpURL, response, err in
+        AF.download(serverURL).response(completionHandler: {res in
+
+            guard res.error == nil else {
+                completion(nil,res.error)
+                return
+            }
             
-//            print("下載成功嗎", tmpURL, err)
-            
-            
-            completion(tmpURL,nil)
-            
-            
-        }
+            completion(res.fileURL,nil)
+
+        })
         
-        task.resume()
     }
     
     

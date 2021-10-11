@@ -76,7 +76,19 @@ extension UIColor{
 
 extension UIImage{
     
-    
+    // load from path
+    convenience init?(fileURLWithPath url: URL, scale: CGFloat = 1.0) {
+        
+     
+        
+        do {
+            let data = try Data(contentsOf: url)
+            self.init(data: data, scale: scale)
+        } catch {
+            print("-- Error: \(error)")
+            return nil
+        }
+    }
 }
 
 extension UIViewController{

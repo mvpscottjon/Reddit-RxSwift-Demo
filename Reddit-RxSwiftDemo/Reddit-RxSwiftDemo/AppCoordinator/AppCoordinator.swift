@@ -46,7 +46,6 @@ extension AppCoordinator{
     
     func runPostFlow(){
         
-        print("有跑run post")
         let child = PostCoordinator(navigation: self.navigation)
         child.parentCoordinator = self
         self.childCoordinator.append(child)

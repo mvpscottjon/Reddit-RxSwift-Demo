@@ -154,12 +154,7 @@ extension LocalStorageService{
             
             manager.saveObject(obj: obj)
             
-           
-            
-           let rs = RealmManager.shared.getResults(type: RMLocalImage.self)
-
-            print("看一下所有Rs:",rs)
-            
+    
             
         }
      

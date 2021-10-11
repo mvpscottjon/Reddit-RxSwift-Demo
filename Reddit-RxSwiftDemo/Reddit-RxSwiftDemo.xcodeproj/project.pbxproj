@@ -40,6 +40,7 @@
 		9AD54CEE271376BE00B7C1CF /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CED271376BE00B7C1CF /* LocalStorageService.swift */; };
 		9AD54CF227142B2F00B7C1CF /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF127142B2F00B7C1CF /* RealmManager.swift */; };
 		9AD54CF42714309E00B7C1CF /* RMLocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */; };
+		9AD54CF62714524800B7C1CF /* PostWithThumbnailTbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD54CF52714524800B7C1CF /* PostWithThumbnailTbCell.swift */; };
 		9DE2B06A6A86CF4C2A54EB17 /* Pods_Reddit_RxSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D28EB92C6C7E51617E8E098 /* Pods_Reddit_RxSwiftDemo.framework */; };
 		B247F02A51116908B05353E3 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54B32C3970AF4F6AE8558C6 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		9AD54CED271376BE00B7C1CF /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		9AD54CF127142B2F00B7C1CF /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		9AD54CF32714309E00B7C1CF /* RMLocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocalImage.swift; sourceTree = "<group>"; };
+		9AD54CF52714524800B7C1CF /* PostWithThumbnailTbCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithThumbnailTbCell.swift; sourceTree = "<group>"; };
 		A05BC9486A5EF25F6E71BBC2 /* Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests/Pods-Reddit-RxSwiftDemo-Reddit-RxSwiftDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B54B32C3970AF4F6AE8558C6 /* Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reddit_RxSwiftDemo_Reddit_RxSwiftDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE01433D8D6F9D92C4B4470 /* Pods_Reddit_RxSwiftDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reddit_RxSwiftDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				9ACA9B372711BE29005E4201 /* PostTbCell.swift */,
+				9AD54CF52714524800B7C1CF /* PostWithThumbnailTbCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				9ACA9B2727118F67005E4201 /* AppMainVC.swift in Sources */,
 				9AC727DC27125BD200E4DEE4 /* ResizableButton.swift in Sources */,
 				9A688E1E270F41B0000B42EB /* AppDelegate.swift in Sources */,
+				9AD54CF62714524800B7C1CF /* PostWithThumbnailTbCell.swift in Sources */,
 				9AC727E02712628B00E4DEE4 /* TimeHandler.swift in Sources */,
 				9AD54CF227142B2F00B7C1CF /* RealmManager.swift in Sources */,
 				9ACA9B352711BBA2005E4201 /* Constants.swift in Sources */,

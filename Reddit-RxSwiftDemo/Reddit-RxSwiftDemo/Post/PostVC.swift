@@ -128,6 +128,8 @@ extension PostVC{
             self?.showAlert(title: "Error！！", errMsg: err?.localizedDescription ?? "")
         })
         
+       
+        
         //MARK: Download state
         _ = self.vm.isDownloadingSuccess.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isOk in
             
@@ -167,7 +169,8 @@ extension PostVC{
     
     private func setupTbView(){
         self.tbView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.cellID)
-        self.tbView.register(PostTbCell.self, forCellReuseIdentifier: PostTbCell.cellID)
+//        self.tbView.register(PostTbCell.self, forCellReuseIdentifier: PostTbCell.cellID)
+        self.tbView.register(PostWithThumbnailTbCell.self, forCellReuseIdentifier: PostWithThumbnailTbCell.cellID)
 
         
         self.view.addSubview(tbView)
@@ -183,7 +186,9 @@ extension PostVC{
 extension PostVC {
     
     private func configCell(tablieView:UITableView, row:Int, post:PostDetail ) -> UITableViewCell{
-        let cell = tablieView.dequeueReusableCell(withIdentifier: PostTbCell.cellID) as! PostTbCell
+//        let cell = tablieView.dequeueReusableCell(withIdentifier: PostTbCell.cellID) as! PostTbCell
+        let cell = tablieView.dequeueReusableCell(withIdentifier: PostWithThumbnailTbCell.cellID) as! PostWithThumbnailTbCell
+
         
         cell.cellVM = PostCellVM(obj: post)
         //MARK:btnURL tapped
@@ -196,9 +201,17 @@ extension PostVC {
         cell.imgViewThumbnail.rx.longPressGesture(configuration: nil).when(.began).subscribe(onNext: { [weak self] gesture in
             
             self?.debugPrint("長按了")
-            self?.showDownloadAlert(url: cell.cellVM?.imgThumbnilURL)
+            self?.showDownloadAlert(url: cell.cellVM?.imgThumbnailURL)
         }).disposed(by: cell.dBag)
 
+        
+        //MARK: Btn download
+        cell.btnDownload.rx.tap.subscribe(onNext: { [weak self] gesture in
+            
+            self?.debugPrint("點下載ㄇ")
+            self?.showDownloadAlert(url: cell.cellVM?.imgThumbnailURL)
+        }).disposed(by: cell.dBag)
+        
         return cell
     }
 }

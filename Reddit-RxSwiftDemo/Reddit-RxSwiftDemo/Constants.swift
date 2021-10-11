@@ -71,7 +71,7 @@ extension UIColor{
 extension UIColor{
     
     static let thumbnail = UIColor(redPercent: 128, greedPercent: 128, bluePercent: 128, alphaPercent: 100)
-    
+    static let mainColor = UIColor.init(redPercent: 30, greedPercent: 37, bluePercent: 52, alphaPercent: 100)
 }
 
 extension UIImage{

@@ -63,7 +63,7 @@ extension AppDelegate{
     private func configNavBar(){
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = UIColor.init(redPercent: 30, greedPercent: 37, bluePercent: 52, alphaPercent: 100)
+        appearance.backgroundColor = .mainColor
         
         
         UINavigationBar.appearance().standardAppearance = appearance
@@ -92,7 +92,7 @@ extension AppDelegate{
         // Tell Realm to use this new configuration bject for the default Realm
         Realm.Configuration.defaultConfiguration = config
 
-        let realm = try! Realm()
+//        let realm = try! Realm()
         
         
 //        try!  realm.write {

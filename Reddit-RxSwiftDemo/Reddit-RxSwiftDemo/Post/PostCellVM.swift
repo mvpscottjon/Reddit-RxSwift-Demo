@@ -12,8 +12,8 @@ class PostCellVM: NSObject {
    
     
     var userName:String?{
-        return self._obj?.data.subreddit_name_prefixed
-//        return self._obj?.data.display_name ?? self._obj?.data.name
+//        return self._obj?.data.subreddit_name_prefixed
+        return self._obj?.data.display_name ?? self._obj?.data.name
     }
     var userDetail:String?{
         
@@ -24,12 +24,12 @@ class PostCellVM: NSObject {
         }
         if let time = self.createTime {
             str.append(time)
-            str.append("・")
+//            str.append("・")
         }
-        if let domain = self._obj?.data.domain{
-            
-            str.append(domain)
-        }
+//        if let domain = self._obj?.data.domain{
+//
+//            str.append(domain)
+//        }
         
         return str
     }
@@ -69,13 +69,13 @@ class PostCellVM: NSObject {
         
         return attrStr
     }
-    var imgThumbnilURL:URL?{
-//        print("看thumbnailURL:",self._obj?.data.thumbnail)
+    var imgThumbnailURL:URL?{
+      
         return self._obj?.data.thumbnail?.toURL()
     }
     var imgThumbnail:UIImage?{
         
-       let img = LocalStorageService.shared.retrieveImg(key: self.imgThumbnilURL?.absoluteString)
+       let img = LocalStorageService.shared.retrieveImg(key: self.imgThumbnailURL?.absoluteString)
         
 //        print("看img local file:",img)
         

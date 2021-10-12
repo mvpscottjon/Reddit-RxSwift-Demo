@@ -34,23 +34,25 @@
 
 <img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/webView.png" width="414" height="665">
 
+4.t
 
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/refresh.png" width="414" height="665">
 
 # Memo
-1. 開啟app預設先搜尋TAIWAN，因其貼文thumbnail相對較多，而若清空搜尋字串，會回傳空貼文陣列。
+1. 開啟app預設先搜尋TAIWAN，因其貼文thumbnail相對較多，而若清空搜尋字串，會回傳空貼文陣列。另可搜尋"KEYWORD"，其搜尋結果user圖片相對較多  
 
 2. 貼文者圖片不是每個人都有，若無則以預設灰色代表圖片區塊
 
 3. 背景下載圖片，預設為存到realm local storage，亦可選擇存到userDefauls(function有做，但要從程式修改storageType)
 
-4. 貼文thumbnail若手動儲存後，下次會優先讀取local data(為了展示背景下載的function，不然應該採用alamofire預設的cache或者自動存到realm是較好的方案)
+4. 貼文thumbnail若手動儲存後，下次會優先讀取local data(為了展示背景下載的function，不然應該採用alamofire預設的cache機制或者自動存到realm是較好的方案)
 
-5. 原本參考reddit貼文cell，想拿thumbnail當作貼文圖片來做auto size cell，但縮圖畫質太差，故後來改為reddit上另一種搜尋的cell
+5. 原本參考reddit貼文cell，想拿thumbnail當作貼文圖片來做auto size cell，但縮圖畫質太差，故後來改為reddit上另一種搜尋的 thumbnail cell
 
 reddit autosize cell 貼文示意
 
-<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/IMG_1424.png" width="414" height="665">
 
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/reddit1.png" width="414" height="665">
 
 
 實際情形
@@ -60,7 +62,7 @@ reddit autosize cell 貼文示意
 
 reddit thumbnail cell 貼文示意
 
-<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/IMG_1425.png" width="414" height="665">
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/reddit2.png" width="414" height="665">
 
 
 

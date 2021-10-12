@@ -26,13 +26,8 @@ class PostCoordinator: Coordinator {
         let vc = PostVC()
         vc.coordinator = self
         vc.modalPresentationStyle = .fullScreen
-//        vc.view.backgroundColor = .red
         self.navigation?.pushViewController(vc, animated: true)
-        
-//        self.navigation?.viewControllers.last?.present(vc, animated: true, completion: nil)
-//        let nc = UINavigationController(rootViewController: vc)
-//        nc.modalPresentationStyle = .fullScreen
-//        self.navigation?.present(nc, animated: true, completion: nil)
+   
         
     }
 
@@ -47,9 +42,7 @@ extension PostCoordinator{
         self.childCoordinator.append(child)
 
         child.start()
-        
-//        let vc = CustomWebViewVC(url: url)
-//        self.navigation?.pushViewController(vc, animated: true)
+
     }
     
 }

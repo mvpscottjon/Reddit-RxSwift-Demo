@@ -11,6 +11,7 @@ import RxSwift
 protocol PostServiceProtocol{
     
 //    func  loadTopPostList(completion: @escaping(PostListModel?,Error?) -> Void)
+//    func loadPostListBySearchText(text:String?,completion: @escaping([PostDetail],Error?) -> Void)
     func  loadTopPostListBySearchText(text:String?) -> Observable<[PostDetail]>
    func downloadImg(serverURL:URL?, completion:@escaping(URL?,Error?) -> Void)
 }
@@ -34,16 +35,25 @@ class PostService: NSObject , PostServiceProtocol{
 }
 
 extension PostService {
+
+//    //user AF and completion
+//    func loadPostListBySearchText(text:String?,completion: @escaping([PostDetail],Error?) -> Void){
+//        
+//        guard let  text = text else {
+//            completion([],ServiceError.parameterNil)
+//            return
+//            
+//        }
 //
-//    func loadTopPostList(completion: @escaping(PostListModel?,Error?) -> Void){
+//        
 //        var component = URLComponents()
 //        component.scheme = scheme
 //        component.host = baseURL
-//        component.path = path
+//        component.path = "/r/\(text)/top.json"
 ////        print("先看url",component.url)
 //
 //        guard let url = component.url else {
-//            completion(nil,ServiceError.urlNil)
+//            completion([],ServiceError.urlNil)
 //            return}
 //
 //
@@ -51,17 +61,20 @@ extension PostService {
 //
 //            switch rs.result {
 //            case .success(let obj):
-//                completion(obj,nil)
+//                
+//                
+//                completion(obj.data?.children ?? [],nil)
 //            case .failure(let err):
-//                completion(nil,err)
+//                completion([],err)
 //            }
 //
 //
 //        }
 //
 //    }
-//
+
     
+    //use rx and urlSession
     func loadTopPostListBySearchText(text:String?) -> Observable<[PostDetail]> {
         
         guard let  text = text else {return .just([])}

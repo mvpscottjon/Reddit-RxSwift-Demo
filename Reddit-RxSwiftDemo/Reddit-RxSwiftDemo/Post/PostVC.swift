@@ -17,7 +17,15 @@ class PostVC: UIViewController {
 
     var vm = PostVM()
     var tbView:UITableView  = UITableView(frame: .zero, style: .plain)
-    var searchBar = UISearchBar(frame: .zero)
+    var searchBar :UISearchBar = {
+        let bar = UISearchBar(frame: .zero)
+        bar.text = "TAIWAN"
+        bar.placeholder = "Search"
+        bar.isTranslucent = false
+       
+        
+        return bar
+    }()
     
     private let loadingActivityIndicator = UIActivityIndicatorView()
     
@@ -60,6 +68,7 @@ extension PostVC{
         self.setupSearchBar()
         self.setupTbView()
         
+        self.hideKeyboardWhenTounchAround()
     }
     
     func bindUI() {
@@ -67,33 +76,7 @@ extension PostVC{
         //MARK: tbView delegate
         _ = self.tbView.rx.setDelegate(self).disposed(by: dBag)
   
-        
-//        //MARK:bind searchBar
-
-//        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(150), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ [unowned self] query -> Observable<[PostDetail]> in
-//
-//            if query.isEmpty {
-////                return self.vm.loadPostListBySearch(text: "KEYWORD").catchAndReturn([])
-//                return .just([])
-//            }
-//
-//            return self.vm.loadPostListBySearch(text: query).catch({ err in
-//
-//                print("search錯誤哦:",err)
-//
-//
-//                return .just([])
-//            })
-//
-//        }).observe(on: MainScheduler.instance)
-//
-//        //MARK: searchRs bind to tbView
-//       _ = searchRS.bind(to: self.tbView.rx.items){ tb, row, post in
-//
-//            self.configCell(tablieView: tb, row: row, post: post)
-//       }.disposed(by: dBag)
-        
-        
+        //MARK: bind Table data
         self.vm.obPostDeatilArr.bind(to: self.tbView.rx.items){ tb, row, post in
 
             self.configCell(tablieView: tb, row: row, post: post)
@@ -170,7 +153,7 @@ extension PostVC{
         
         //MARK: Download state
         _ = self.vm.isDownloadingSuccess.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isOk in
-            self?.debugPrint("觀察到 isDownloadingSuccess:",isOk)
+//            self?.debugPrint("觀察到 isDownloadingSuccess:",isOk)
 
             if isOk{
             self?.showBanner(msg: "Image saved", type: .success)
@@ -190,7 +173,7 @@ extension PostVC{
         //MARK: LoadingView
         _ = self.vm.isLoading.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isLoading in
 
-            self?.debugPrint("觀察到 isLoading:",isLoading)
+//            self?.debugPrint("觀察到 isLoading:",isLoading)
 
             guard isLoading else {
                 self?.hideLoadingView()
@@ -211,9 +194,7 @@ extension PostVC{
 extension PostVC{
     
     private func setupSearchBar(){
-        searchBar.text = "TAIWAN"
-        searchBar.placeholder = "Search"
-        searchBar.isTranslucent = false
+        searchBar.delegate = self
         self.view.addSubview(searchBar)
         searchBar.snp.makeConstraints({
             $0.top.equalTo(self.view.safeAreaLayoutGuide)
@@ -313,5 +294,38 @@ extension PostVC :UITableViewDelegate {
     
 }
 
+extension PostVC{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+//        debugPrint("開始滑動")
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+//        print("contnetH:",contentHeight, "frameH:",frameHeight)
+//        print("開始滑動",offsetY)
+//        print("==========")
+        if offsetY >= 0 && offsetY > contentHeight - frameHeight {
+            
+//            guard self.vm.isLoading.value == false  else {
+////                print("鎖住哦")
+//                return
+//            }
+            
+//            debugPrint("到底了")
 
+            
+        }
+        
+    }
+    
+}
 
+extension PostVC: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        print("點了搜尋")
+        self.stopEditingMode()
+    }
+    
+}

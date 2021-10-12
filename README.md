@@ -49,7 +49,7 @@
 
 reddit autosize cell 貼文示意
 
-<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/IMG_1424.png" width="414" height="665">
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/reddit1.PNG" width="414" height="665">
 
 
 
@@ -60,7 +60,7 @@ reddit autosize cell 貼文示意
 
 reddit thumbnail cell 貼文示意
 
-<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/IMG_1425.png" width="414" height="665">
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/reddit2.PNG" width="414" height="665">
 
 
 

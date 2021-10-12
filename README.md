@@ -20,9 +20,12 @@
 
 # Function
 
-1.搜尋post
+1.搜尋post，若為空字串則顯示"all"的結果
 
 <img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/home.png" width="414" height="665">
+
+<img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/all.png" width="414" height="665">
+
 
 2.若貼文有縮圖，可長按圖片或按下載圖示進行背景下載，下載成功後會顯示儲存成功
 

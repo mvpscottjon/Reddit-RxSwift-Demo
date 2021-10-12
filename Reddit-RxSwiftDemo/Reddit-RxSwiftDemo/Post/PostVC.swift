@@ -22,8 +22,7 @@ class PostVC: UIViewController {
         bar.text = "TAIWAN"
         bar.placeholder = "Search"
         bar.isTranslucent = false
-       
-        
+
         return bar
     }()
     
@@ -83,7 +82,12 @@ extension PostVC{
         }.disposed(by: dBag)
 
         //MARK: Bind search
-        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(300), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query in
+        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(300), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ [unowned self]  query -> Observable<[PostDetail]>  in
+            
+            if query.isEmpty{
+                
+                return self.vm.loadPostListBySearch(text: "all").catchAndReturn([])
+            }
             
             return self.vm.loadPostListBySearch(text: query).catchAndReturn([])
             
@@ -106,9 +110,14 @@ extension PostVC{
         self.tbView.refreshControl = refreshControl
 //
         let fresh = refreshControl.rx.controlEvent(.valueChanged)
-            .flatMapLatest({ _ in
+            .flatMapLatest({ [unowned self] _ -> Observable<[PostDetail]> in
                 //            return Observable.just([])
 
+                if self.searchBar.text?.isEmpty ?? true == true {
+                    
+                    return self.vm.loadPostListBySearch(text: "all").catch({ _ in .just([])})
+                }
+                
                 return self.vm.loadPostListBySearch(text: self.searchBar.text).catch({ _ in .just([])})
             })
             .observe(on: MainScheduler.instance)
@@ -121,7 +130,7 @@ extension PostVC{
 
             self.vm.obPostDeatilArr.accept(arr)
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.tbView.refreshControl?.endRefreshing()
             })
 
@@ -294,32 +303,30 @@ extension PostVC :UITableViewDelegate {
     
 }
 
-extension PostVC{
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-//        debugPrint("開始滑動")
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let frameHeight = scrollView.frame.size.height
-//        print("contnetH:",contentHeight, "frameH:",frameHeight)
-//        print("開始滑動",offsetY)
-//        print("==========")
-        if offsetY >= 0 && offsetY > contentHeight - frameHeight {
-            
-//            guard self.vm.isLoading.value == false  else {
-////                print("鎖住哦")
-//                return
-//            }
-            
-//            debugPrint("到底了")
-
-            
-        }
-        
-    }
-    
-}
+//extension PostVC{
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+////        debugPrint("開始滑動")
+//        let offsetY = scrollView.contentOffset.y
+//        let contentHeight = scrollView.contentSize.height
+//        let frameHeight = scrollView.frame.size.height
+//
+//        if offsetY >= 0 && offsetY > contentHeight - frameHeight {
+//
+////            guard self.vm.isLoading.value == false  else {
+//////                print("鎖住哦")
+////                return
+////            }
+//
+////            debugPrint("到底了")
+//
+//
+//        }
+//
+//    }
+//
+//}
 
 extension PostVC: UISearchBarDelegate{
     

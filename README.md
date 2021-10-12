@@ -37,7 +37,7 @@
 
 <img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/webView.png" width="414" height="665">
 
-4.t
+4.下拉重新讀取搜尋結果
 
 <img src="https://github.com/mvpscottjon/Reddit-RxSwift-Demo/blob/dev/Sources/refresh.png" width="414" height="665">
 

@@ -95,6 +95,20 @@ extension UIImage{
 
 extension UIViewController{
     
+    @objc func stopEditingMode(){
+        self.view.endEditing(true)
+        
+    }
+    
+    func hideKeyboardWhenTounchAround(){
+        let tap = UITapGestureRecognizer()
+        self.view.addGestureRecognizer(tap)
+        
+        tap.addTarget(self, action: #selector(stopEditingMode))
+        
+        
+    }
+    
     func showAlert(title:String?, errMsg:String , alertStyle:UIAlertController.Style = .alert){
         
         let act = UIAlertController(title: title, message: errMsg, preferredStyle: alertStyle)

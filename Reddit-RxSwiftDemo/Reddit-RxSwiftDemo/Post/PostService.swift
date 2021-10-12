@@ -11,7 +11,7 @@ import RxSwift
 protocol PostServiceProtocol{
     
 //    func  loadTopPostList(completion: @escaping(PostListModel?,Error?) -> Void)
-    func loadPostListBySearchText(text:String?,completion: @escaping([PostDetail],Error?) -> Void)
+//    func loadPostListBySearchText(text:String?,completion: @escaping([PostDetail],Error?) -> Void)
     func  loadTopPostListBySearchText(text:String?) -> Observable<[PostDetail]>
    func downloadImg(serverURL:URL?, completion:@escaping(URL?,Error?) -> Void)
 }
@@ -36,42 +36,42 @@ class PostService: NSObject , PostServiceProtocol{
 
 extension PostService {
 
-    //user AF and completion
-    func loadPostListBySearchText(text:String?,completion: @escaping([PostDetail],Error?) -> Void){
-        
-        guard let  text = text else {
-            completion([],ServiceError.parameterNil)
-            return
-            
-        }
-
-        
-        var component = URLComponents()
-        component.scheme = scheme
-        component.host = baseURL
-        component.path = "/r/\(text)/top.json"
-//        print("先看url",component.url)
-
-        guard let url = component.url else {
-            completion([],ServiceError.urlNil)
-            return}
-
-
-        AF.request(url, method: .get, headers: baseHeader).responseDecodable(of: PostListModel.self) { rs in
-
-            switch rs.result {
-            case .success(let obj):
-                
-                
-                completion(obj.data?.children ?? [],nil)
-            case .failure(let err):
-                completion([],err)
-            }
-
-
-        }
-
-    }
+//    //user AF and completion
+//    func loadPostListBySearchText(text:String?,completion: @escaping([PostDetail],Error?) -> Void){
+//        
+//        guard let  text = text else {
+//            completion([],ServiceError.parameterNil)
+//            return
+//            
+//        }
+//
+//        
+//        var component = URLComponents()
+//        component.scheme = scheme
+//        component.host = baseURL
+//        component.path = "/r/\(text)/top.json"
+////        print("先看url",component.url)
+//
+//        guard let url = component.url else {
+//            completion([],ServiceError.urlNil)
+//            return}
+//
+//
+//        AF.request(url, method: .get, headers: baseHeader).responseDecodable(of: PostListModel.self) { rs in
+//
+//            switch rs.result {
+//            case .success(let obj):
+//                
+//                
+//                completion(obj.data?.children ?? [],nil)
+//            case .failure(let err):
+//                completion([],err)
+//            }
+//
+//
+//        }
+//
+//    }
 
     
     //use rx and urlSession

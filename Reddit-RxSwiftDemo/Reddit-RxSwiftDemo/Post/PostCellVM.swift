@@ -13,13 +13,13 @@ class PostCellVM: NSObject {
     
     var userName:String?{
 //        return self._obj?.data.subreddit_name_prefixed
-        return self._obj?.data.display_name ?? self._obj?.data.name
+        return self._obj?.data.display_name ?? self._obj?.data.author
     }
     var userDetail:String?{
         
         var str = ""
-        if let auther = self._obj?.data.author{
-            str.append(auther)
+        if let name = self._obj?.data.name{
+            str.append(name)
             str.append("・")
         }
         if let time = self.createTime {

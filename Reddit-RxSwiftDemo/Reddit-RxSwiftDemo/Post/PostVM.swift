@@ -23,7 +23,7 @@ class PostVM: NSObject {
         self._service = apiService
         super.init()
         
-//        self.loadTopList()
+
     }
     
 }
@@ -63,7 +63,7 @@ extension PostVM{
 //    }
     
     func loadPostListBySearch(text:String?) -> Observable<[PostDetail]>{
-
+        
         
        return self._service.loadTopPostListBySearchText(text: text)
     }
@@ -74,7 +74,9 @@ extension PostVM{
     
 
     func downloadImg(url:URL?){
-//        self.isLoading.accept(true)
+        
+        
+        
         self._service.downloadImg(serverURL: url, completion: { fileURL,err in
             
             guard err == nil else {
@@ -91,7 +93,8 @@ extension PostVM{
                     return}
   
                 self.isDownloadingSuccess.accept(true)
-//                self.isLoading.accept(false)
+                
+               
             })
            
             

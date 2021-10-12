@@ -12,11 +12,15 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import RxGesture
+import Kingfisher
 class PostVC: UIViewController {
 
     var vm = PostVM()
     var tbView:UITableView  = UITableView(frame: .zero, style: .plain)
     var searchBar = UISearchBar(frame: .zero)
+    
+    private let loadingActivityIndicator = UIActivityIndicatorView()
+    
     private let refreshControl: UIRefreshControl = {
         return UIRefreshControl()
     }()
@@ -96,7 +100,7 @@ extension PostVC{
         }.disposed(by: dBag)
 
         //MARK: Bind search
-        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(500), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query in
+        let searchRS = self.searchBar.rx.text.orEmpty.throttle(.microseconds(300), scheduler: MainScheduler.instance).distinctUntilChanged().flatMapLatest({ query in
             
             return self.vm.loadPostListBySearch(text: query).catchAndReturn([])
             
@@ -130,22 +134,20 @@ extension PostVC{
 
         fresh.subscribe(onNext: { arr in
 
-            print("刷新了",arr.count)
+//            print("刷新了",arr.count)
 
             self.vm.obPostDeatilArr.accept(arr)
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.tbView.refreshControl?.endRefreshing()
             })
 
-
-
         }, onError: { arr in
-            print("fresch是 err")
+//            print("fresch是 err")
 
         }
         ,onCompleted: {
-            print("fresch是 completed")
+//            print("fresch是 completed")
 
         }).disposed(by: dBag)
 
@@ -168,7 +170,8 @@ extension PostVC{
         
         //MARK: Download state
         _ = self.vm.isDownloadingSuccess.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isOk in
-            
+            self?.debugPrint("觀察到 isDownloadingSuccess:",isOk)
+
             if isOk{
             self?.showBanner(msg: "Image saved", type: .success)
             }else {
@@ -180,13 +183,19 @@ extension PostVC{
         }).disposed(by: dBag)
         
         
+        
+        
+       
+        
         //MARK: LoadingView
         _ = self.vm.isLoading.observe(on: MainScheduler.instance).subscribe(onNext: {[weak self] isLoading in
-            
+
+            self?.debugPrint("觀察到 isLoading:",isLoading)
+
             guard isLoading else {
                 self?.hideLoadingView()
                 return}
-            
+
             self?.showLoadingView()
         }, onError: nil, onCompleted: nil).disposed(by: dBag)
         

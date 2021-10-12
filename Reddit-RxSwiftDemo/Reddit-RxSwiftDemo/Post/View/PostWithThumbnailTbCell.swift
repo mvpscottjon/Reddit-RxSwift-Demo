@@ -56,18 +56,18 @@ class PostWithThumbnailTbCell: UITableViewCell {
         imgView.clipsToBounds = true
         imgView.layer.masksToBounds = true
         imgView.isUserInteractionEnabled = true
-        imgView.backgroundColor = .yellow
+        imgView.backgroundColor = .thumbnail
         return imgView
     }()
-    var btnURL:UIButton = {
-        let btn = UIButton()
-        
+    var btnURL:ResizableButton = {
+        let btn = ResizableButton()
         btn.setTitleColor(.blue, for: .normal)
         btn.contentHorizontalAlignment = .leading
         btn.titleLabel?.textAlignment = .left
-        //        btn.titleLabel?.numberOfLines = 0
-        //        btn.backgroundColor = .yellow
-        //        btn.titleLabel?.lineBreakMode = .byWordWrapping
+//        btn.backgroundColor = .yellow
+//        btn.titleLabel?.numberOfLines = 0
+        btn.titleLabel?.lineBreakMode = .byTruncatingTail
+
         return btn
     }()
     var btnDownload:UIButton = {
@@ -77,7 +77,7 @@ class PostWithThumbnailTbCell: UITableViewCell {
         btn.contentHorizontalAlignment = .center
         btn.titleLabel?.textAlignment = .center
         btn.setImage(UIImage(systemName: "arrow.down.circle.fill"), for: .normal)
-//        btn.backgroundColor = .red
+        //        btn.backgroundColor = .red
         return btn
     }()
     
@@ -88,10 +88,10 @@ class PostWithThumbnailTbCell: UITableViewCell {
         }
     }
     
-   private let cellInset : CGFloat = 20
+    private let cellInset : CGFloat = 20
     private let thumbnailSize = CGSize(width: 40 * 2.5, height: 30 * 2.5)
     private let btnSize = CGSize(width: 40, height: 40)
-
+    
     var dBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -130,6 +130,7 @@ class PostWithThumbnailTbCell: UITableViewCell {
         self.lbTitle.text = nil
         self.lbDesciption.text = nil
         self.lbUserName.text = nil
+        self.btnURL.setTitle(nil, for: .normal)
     }
 }
 
@@ -139,13 +140,13 @@ extension PostWithThumbnailTbCell {
         
         self.selectionStyle = .none
         
-
+        
         
         self.contentView.addSubview(imgViewThumbnail)
         imgViewThumbnail.snp.makeConstraints({
             $0.top.trailing.equalToSuperview().inset(cellInset)
             $0.size.equalTo(thumbnailSize)
-      
+            
         })
         self.contentView.addSubview(btnDownload)
         btnDownload.snp.makeConstraints({
@@ -163,7 +164,7 @@ extension PostWithThumbnailTbCell {
             $0.trailing.equalTo(imgViewThumbnail.snp.leading)
         })
         //MARK:imgUserPhoto
-
+        
         userSubView.addSubview(imgViewUserPhoto)
         imgViewUserPhoto.snp.makeConstraints({
             $0.width.height.equalTo(30)
@@ -186,9 +187,9 @@ extension PostWithThumbnailTbCell {
             $0.trailing.equalToSuperview().inset(10)
             $0.bottom.equalTo(imgViewUserPhoto)
         })
-
-
-
+        
+        
+        
         let msgSubView = UIView()
         self.contentView.addSubview(msgSubView)
         msgSubView.snp.makeConstraints({
@@ -197,30 +198,32 @@ extension PostWithThumbnailTbCell {
             $0.trailing.equalTo(imgViewThumbnail.snp.leading)
             $0.bottom.equalToSuperview()
         })
-
+        
         //MARK:lbTitle
         msgSubView.addSubview(lbTitle)
         lbTitle.snp.makeConstraints({
-//            $0.top.equalTo(userSubView.snp.bottom).offset(cellInset)
-
-//            $0.leading.trailing.equalToSuperview().inset(cellInset)
+            //            $0.top.equalTo(userSubView.snp.bottom).offset(cellInset)
+            
+            //            $0.leading.trailing.equalToSuperview().inset(cellInset)
             $0.top.leading.trailing.equalToSuperview()
             $0.height.greaterThanOrEqualTo(40)
         })
-
-
+        
+        
         //MARK:Link
-
+        
         msgSubView.addSubview(btnURL)
         btnURL.snp.makeConstraints({
             $0.top.equalTo(lbTitle.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(lbTitle)
+            //            $0.height.greaterThanOrEqualTo(30)
+            //            $0.height.lessThanOrEqualTo(100)
             $0.bottom.equalToSuperview()
         })
-
-
         
-      
+        
+        
+        
         
         
     }
@@ -233,7 +236,7 @@ extension PostWithThumbnailTbCell {
         self.lbUserName.text = self.cellVM?.userName
         self.lbDesciption.text = self.cellVM?.userDetail
         self.lbTitle.text = self.cellVM?.title
-        //        self.btnURL.setTitle(self.cellVM?.urlLink?.absoluteString ?? "", for: .normal)
+//        self.btnURL.setTitle(self.cellVM?.urlLink?.absoluteString ?? "", for: .normal)
         self.btnURL.setAttributedTitle(self.cellVM?.urlLinkAttrString, for: .normal)
         
         
@@ -242,7 +245,7 @@ extension PostWithThumbnailTbCell {
         
         
         if  self.cellVM?.imgThumbnilHeight == nil{
-//            print("thumb == nil")
+            //            print("thumb == nil")
             self.imgViewThumbnail.snp.updateConstraints({
                 $0.height.width.equalTo(0)
             })
@@ -252,7 +255,7 @@ extension PostWithThumbnailTbCell {
             })
             
         }else {
-//            print("不是empty:",self.cellVM?.imgThumbnailURL)
+            //            print("不是empty:",self.cellVM?.imgThumbnailURL)
             self.imgViewThumbnail.snp.updateConstraints({
                 $0.size.equalTo(self.thumbnailSize)
             })
@@ -264,30 +267,14 @@ extension PostWithThumbnailTbCell {
         
         if self.cellVM?.imgThumbnail != nil {
             
-//            print("是local img")
+            //            print("是local img")
             DispatchQueue.main.async {
                 self.imgViewThumbnail.image = self.cellVM?.imgThumbnail
                 
             }
         }else{
-//            print("是server img")
-            self.imgViewThumbnail.kf.setImage(with: self.cellVM?.imgThumbnailURL,completionHandler: { rs in
-                
-                //            print("照片讀取回來哦",self.cellVM?.imgThumbnilURL)
-                switch rs{
-                case .success(_):
-                    //                print("成功","先看長寬",self.cellVM?.imgThumbnilHeight)
-                    break
-                case .failure(_):
-                    break
-                    //                print("失敗")
-//                    self.imgViewThumbnail.snp.updateConstraints({
-//                        $0.height.equalTo(0)
-//                    })
-                }
-                
-                
-            })
+            //            print("是server img")
+            self.imgViewThumbnail.kf.setImage(with: self.cellVM?.imgThumbnailURL)
             
             
         }
